@@ -1,0 +1,16 @@
+{
+  "name": "Part-3-React",
+  "version": "1.0.0",
+  "description": "work sample test, part 3",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Tegshee Baasan",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
