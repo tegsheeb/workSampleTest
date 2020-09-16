@@ -1,19 +1,28 @@
 const path = require("path")
+var SRC_DIR = path.join(__dirname, '/src');
+var DIST_DIR = path.join(__dirname, '/dist');
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 
 module.exports = {
-    entry: "./src/index.jsx",
+    entry: `${SRC_DIR}/index.jsx`,
     mode: "development", // "production" | "development" | "none"
     devtool: "inline-source-map",
     resolve: {
         extensions: [".jsx", ".js"]
+    },
+    output: {
+        filename: "bundle.js",
+        path: DIST_DIR
     },
     module: {
         rules: [
             {
               test: /\.(js|jsx|)$/,
                 exclude: /node_modules/,
-                loader: "babel-loader"
+                loader: "babel-loader",
+                query: {
+                    presets: ['@babel/preset-env', '@babel/preset-react']
+                 }
             },
             {
               test: /\.s?css$/,
@@ -21,10 +30,7 @@ module.exports = {
             }
         ]
     },
-    output: {
-        filename: "bundle.js",
-        path: path.resolve(__dirname, "build")
-    },
+
     plugins: [
         new HtmlWebPackPlugin({
             template: "./index.html",
