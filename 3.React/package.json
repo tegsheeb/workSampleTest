@@ -4,8 +4,8 @@
   "description": "work sample test, part 3",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "webpack-dev-server --open --hot --mode development"
+    "start": "webpack-dev-server --open --hot --mode development",
+    "dev": "node server.js"
   },
   "author": "Tegshee Baasan",
   "license": "ISC",

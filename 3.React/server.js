@@ -7,7 +7,7 @@ const port = 8000
 //   res.send('Hello World!')
 // })
 
-app.use('/', express.static(path.join(__dirname, 'index.html')))
+app.use('/', express.static(path.join(__dirname, '.')))
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
