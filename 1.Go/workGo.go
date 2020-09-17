@@ -11,8 +11,8 @@ type Person struct {
 /*
 // Time Complexity: O(n^2)
 func exactTwice(people []Person) bool {
-	for i := 0; i < len(people); i++ {
-		for j := i + 1; j < len(people); j++ {
+	for i := range people {
+		for j := range people {
 			if people[i].age*2 == people[j].age || people[i].age == people[j].age*2 {
 				return true
 			}
@@ -21,6 +21,7 @@ func exactTwice(people []Person) bool {
 	return false
 }
 */
+
 
 // Time Complexity: O(n)
 func exactTwice(people []Person) bool {
@@ -35,15 +36,15 @@ func exactTwice(people []Person) bool {
 			return true
 		}
 	}
-
 	return false
 }
+
 
 /*
 // Time Complexity: O(n^2)
 func atLeastTwice(people []Person) bool {
-	for i := 0; i < len(people); i++ {
-		for j := i + 1; j < len(people); j++ {
+	for i := range people {
+		for j := range people {
 			if (people[i].age*2 <= people[j].age) || (people[j].age*2 <= people[i].age) {
 				return true
 			}
@@ -52,6 +53,7 @@ func atLeastTwice(people []Person) bool {
 	return false
 }
 */
+
 
 // Time Complexity: O(n)
 func atLeastTwice(people []Person) bool {
@@ -76,15 +78,21 @@ func atLeastTwice(people []Person) bool {
 }
 
 func main() {
-	var people []Person
+	var peopleOne, peopleTwo, peopleThree []Person
 	person1 := Person{age: 5}
 	person2 := Person{age: 9}
 	person3 := Person{age: 11}
 	person4 := Person{age: 12}
-	person5 := Person{age: 13}
+	person5 := Person{age: 10}
 
-	people = append(people, person1, person2, person3, person4, person5)
 
-	fmt.Println(exactTwice(people))
-	fmt.Println(atLeastTwice(people))
+	peopleOne = append(peopleOne, person1, person2, person3, person4, person5)
+	peopleTwo = append(peopleTwo, person3, person4, person5)
+
+	fmt.Println(exactTwice(peopleOne))
+	fmt.Println(exactTwice(peopleTwo))
+	fmt.Println(atLeastTwice(peopleOne))
+	fmt.Println(atLeastTwice(peopleTwo))
+	fmt.Println(atLeastTwice(peopleThree))
+	fmt.Println(atLeastTwice(peopleThree))
 }
