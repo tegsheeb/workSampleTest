@@ -1,83 +1,90 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Person struct {
 	age uint16
 }
 
+/*
+// Time Complexity: O(n^2)
 func exactTwice(people []Person) bool {
-	for i:=0; i<len(people); i++{
-		for j:=i+1; j<len(people); j++{
-			if people[i].age * 2 == people[j].age || people[i].age == people[j].age * 2 {
-				return true;
+	for i := 0; i < len(people); i++ {
+		for j := i + 1; j < len(people); j++ {
+			if people[i].age*2 == people[j].age || people[i].age == people[j].age*2 {
+				return true
 			}
 		}
 	}
-	return false;
+	return false
+}
+*/
+
+// Time Complexity: O(n)
+func exactTwice(people []Person) bool {
+	ages := make(map[uint16]bool)
+
+	for _, person := range people {
+		ages[person.age] = true
+	}
+
+	for _, person := range people {
+		if _, ok := ages[person.age*2]; ok {
+			return true
+		}
+	}
+
+	return false
 }
 
+/*
+// Time Complexity: O(n^2)
 func atLeastTwice(people []Person) bool {
-	for i:=0; i<len(people); i++{
-		for j:=i+1; j<len(people); j++{
-			if (people[i].age * 2 <= people[j].age) || (people[j].age * 2 <= people[i].age) {
-				return true;
+	for i := 0; i < len(people); i++ {
+		for j := i + 1; j < len(people); j++ {
+			if (people[i].age*2 <= people[j].age) || (people[j].age*2 <= people[i].age) {
+				return true
 			}
 		}
 	}
-	return false;
+	return false
+}
+*/
+
+// Time Complexity: O(n)
+func atLeastTwice(people []Person) bool {
+	if len(people) == 0 {
+		return false
+	}
+
+	minAge := people[0].age
+	maxAge := people[0].age
+
+	for _, person := range people {
+		if person.age < minAge {
+			minAge = person.age
+		}
+
+		if maxAge < person.age {
+			maxAge = person.age
+		}
+	}
+
+	return minAge*2 <= maxAge
 }
 
-func main (){
+func main() {
 	var people []Person
-	person1 := Person{age:5}
-	person2 := Person{age:9}
-	person3 := Person{age:10}
-	person4 := Person{age:12}
-	person5 := Person{age:13}
+	person1 := Person{age: 5}
+	person2 := Person{age: 9}
+	person3 := Person{age: 11}
+	person4 := Person{age: 12}
+	person5 := Person{age: 13}
 
 	people = append(people, person1, person2, person3, person4, person5)
 
-	var resultExact = exactTwice(person)
-	fmt.Println(resultExact)
+	fmt.Println(exactTwice(people))
+	fmt.Println(atLeastTwice(people))
 }
-
-// package main
-// import "fmt"
-
-// const usixteenbitmax float64 = 65535
-// const kmhMultiple float64 = 1.60934
-
-// type car struct {
-// 	gasPedal uint16
-// 	brakePedal uint16
-// 	steeringWheel int16
-// 	topSpeedKmh float64
-// }
-
-// func (c car) kmh() float64 {
-// 	c.topSpeedKmh = 500
-// 	return float64(c.gasPedal) * (c.topSpeedKmh/usixteenbitmax)
-// }
-
-// func (c car) mph() float64 {
-// 	return float64(c.gasPedal) * (c.topSpeedKmh/usixteenbitmax/kmhMultiple)
-// }
-
-// func (c *car) newTopSpead(newSpeed float64){
-// 	c.topSpeedKmh = newSpeed
-// }
-
-// func main() {
-// 	aCar := car{gasPedal:65000,
-// 				brakePedal: 0,
-// 				steeringWheel: 12531,
-// 				topSpeedKmh: 225.0}
-
-// 	fmt.Println(aCar.gasPedal)
-// 	fmt.Println(aCar.kmh())
-// 	fmt.Println(aCar.mph())
-// 	aCar.newTopSpead(500)
-// 	fmt.Println(aCar.kmh())
-// 	fmt.Println(aCar.mph())
-// }
