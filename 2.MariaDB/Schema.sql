@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS followers (
     ON UPDATE RESTRICT
 );
 
-/* -- For small testing , uncomment and run "mariadb < Schema.sql"
+/* -- For small dataset testing , uncomment and run "mariadb < Schema.sql"
 INSERT INTO users(username, email, first_name, last_name) VALUES('kevin12', 'kevin@gmail.com', 'kevin', 'v');
 INSERT INTO users(username, email, first_name, last_name) VALUES('kevin121', 'kevin1@gmail.com', 'kevin', 'v');
 INSERT INTO users(username, email, first_name, last_name) VALUES('kevin122', 'kevin2@gmail.com', 'kevin', 'v');
