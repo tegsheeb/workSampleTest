@@ -1,6 +1,6 @@
-CREATE DATABASE IF NOT EXISTS Part2;
+CREATE DATABASE IF NOT EXISTS Part2TegsheeBaasan;
 
-USE Part2
+USE Part2TegsheeBaasan
 
 CREATE TABLE IF NOT EXISTS users (
     user_id INT NOT NULL AUTO_INCREMENT,
@@ -41,7 +41,7 @@ SELECT u1.username, u1.first_name, u1.last_name, tweet, posted_date from users A
 SELECT u1.username, u1.first_name, u1.last_name, tweet, posted_date from users AS u1 LEFT JOIN tweets ON u1.user_id= tweets.tweets_user_id INNER JOIN followers on tweets.tweets_user_id = followers.followers_user_id 
                     INNER JOIN users AS u2 ON followers.followers_follower_id = u2.user_id WHERE u2.username = "Mark" ORDER BY posted_date DESC LIMIT 30 OFFSET 60;
 
-/* -- For testing
+/* -- For small testing 
 INSERT INTO users(username, email, first_name, last_name) VALUES('kevin12', 'kevin@gmail.com', 'kevin', 'v');
 INSERT INTO users(username, email, first_name, last_name) VALUES('kevin121', 'kevin1@gmail.com', 'kevin', 'v');
 INSERT INTO users(username, email, first_name, last_name) VALUES('kevin122', 'kevin2@gmail.com', 'kevin', 'v');
