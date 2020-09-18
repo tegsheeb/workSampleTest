@@ -23,7 +23,7 @@ const createSeedData = (callback) => {
     for (let j = 10; j < 16; j += 1) {
       const tweet = {
         tweet: faker.random.words(Math.random() * ( 15 - 0) + 1),
-        posted_date: `2020-09-${j} 0${j}:${j}:00`,
+        posted_date: `2020-09-${j} ${j}:${j}:00`,
         tweets_user_id: Math.floor(Math.random() * (100 - 0) + 1)
       }
       tweetsData.push(tweet);
