@@ -50,7 +50,7 @@ func exactTwice(people []Person) bool {
 */
 
 /*
-// First version: bitwise operation, single loop, O(n) time complexity with 12 lines
+// Version 1: bitwise operation, single loop, O(n) time complexity with 12 lines
 func exactTwice(people []Person) bool {
 	original := people[0].age 
 	leftShift := people[0].age << 1
@@ -65,21 +65,19 @@ func exactTwice(people []Person) bool {
 }
 */
 
-// Second version: bitwise operation, O(n) time complexity with 20 lines
+// Version 2: bitwise operation, O(n) time complexity with 17 lines
 func exactTwice(people []Person) bool {
 	for age := 0; age <= 25; age++ {
 		twiceAge := age << 1
 		foundAge := false
 		foundTwiceAge := false
-		
 		for _, Person := range people {
-			if Person.age == age {
+			if Person.age == uint16(age) {
 				foundAge = true
-			} else if Person.age == twiceAge {
+			} else if Person.age == uint16(twiceAge) {
 				foundTwiceAge = true
 			}
 		}
-		
 		if foundAge && foundTwiceAge {
 			return true
 		}
@@ -101,7 +99,6 @@ func atLeastTwice(people []Person) bool {
 }
 */
 
-/*
 // Time Complexity: O(n)
 func atLeastTwice(people []Person) bool {
 	if len(people) == 0 {
@@ -123,25 +120,24 @@ func atLeastTwice(people []Person) bool {
 
 	return minAge*2 <= maxAge
 }
-*/
 
 func main() {
-	var peopleTwo /*,peopleThree */ []Person
+	var peopleOne, peopleTwo ,peopleThree []Person
 	person1 := Person{age: 9}
-	person2 := Person{age: 18}
-	person3 := Person{age: 6}
-	// person4 := Person{age: 12}
-	// person5 := Person{age: 25}
-	// person6 := Person{age: 17}
-	// person7 := Person{age: 50}
+	person2 := Person{age: 19}
+	person3 := Person{age: 0}
+	person4 := Person{age: 12}
+	person5 := Person{age: 25}
+	person6 := Person{age: 17}
+	person7 := Person{age: 50}
 
-	// peopleOne = append(peopleOne, person1, person2, person3, person4, person5, person6, person7)
+	peopleOne = append(peopleOne, person1, person2, person3, person4, person5, person6, person7)
 	peopleTwo = append(peopleTwo, person1, person2, person3)
 
-	// fmt.Println(exactTwice(peopleOne))
+	fmt.Println(exactTwice(peopleOne))
 	fmt.Println(exactTwice(peopleTwo))
-	// fmt.Println(atLeastTwice(peopleOne))
-	// fmt.Println(atLeastTwice(peopleTwo))
-	// fmt.Println(atLeastTwice(peopleThree))
-	// fmt.Println(atLeastTwice(peopleThree))
+	fmt.Println(atLeastTwice(peopleOne))
+	fmt.Println(atLeastTwice(peopleTwo))
+	fmt.Println(atLeastTwice(peopleThree))
+	fmt.Println(atLeastTwice(peopleThree))
 }
